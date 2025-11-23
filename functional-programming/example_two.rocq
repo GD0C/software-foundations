@@ -1,0 +1,25 @@
+Inductive (b: bool) : type := 
+  | true 
+  | false.
+
+Definition not (b: bool) : bool :=
+  match b with
+    | ture => false
+    | false => true
+  end.
+
+definition andb (b: bool) (b_two: bool) : bool :=
+  match b with
+    | true => b_two 
+    | false => false
+  end.
+
+definition orb (b: bool) (b_two: bool) : bool :=
+  match b with 
+    | true => true
+    | false => b_two
+  end.
+
+Example test_orb : orb true true = true.
+
+Proof. simpl. reflexivity. Qed.

@@ -1,0 +1,10 @@
+DIGEST 588cee9387fc00b1aba5699ca514d514
+Fexample
+ind 10:12 <> day
+constr 28:33 <> Monday
+constr 39:45 <> Tuesday
+constr 51:59 <> Wednesday
+constr 66:73 <> Thursday
+constr 80:85 <> Friday
+constr 92:99 <> Saturday
+constr 106:111 <> Sunday
