@@ -1,0 +1,43 @@
+  let rec fibbi n = 
+    if n <= 1 then n else fibbi(n - 1) + fibbi(n - 2)
+
+  let rec fibbi2 n =
+    match n with
+      | 0 -> 0
+      | 1 -> 1
+      | _ -> fibbi2(n - 1) + fibbi2(n - 2)
+
+
+
+  type a = string
+  let something: a = "hello"
+
+
+
+  type element = 
+    | Node of {
+        value: int;
+        left: element;
+      }
+    | Test of string
+
+
+
+
+
+  let myNode: element = Node { value = 1; left = Test "hello" }
+
+  let displayNode: element -> unit = function
+    | Node { value; left } -> print_int value; print_newline(); displayNode left
+    | Test s -> print_string s; print_newline()
+
+    (* can compose the side effects *)
+
+
+
+  let () =
+
+    let time = Sys.time() in
+    print_int(fibbi2(50));
+    print_newline();
+    Printf.printf "%f\n" (Sys.time() -. time)

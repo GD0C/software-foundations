@@ -18,6 +18,10 @@ Definition next_work_day (d: day) : day :=
     | Sunday => Monday
   end.
 
+
+
+
+
 Compute (next_work_day Monday).
 Compute (next_work_day (next_work_day Monday).
 

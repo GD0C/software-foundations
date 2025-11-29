@@ -1,0 +1,14 @@
+{
+  "name": "project-euler-typescript",
+  "version": "1.0.0",
+  "description": "Project Euler solutions in TypeScript",
+  "scripts": {
+    "start": "ts-node",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  }
+}
