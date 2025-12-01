@@ -1,9 +1,8 @@
-  let unit_test (test : bool) (message : string) : unit =
+let unit_test (test : bool) (message : string) : unit =
     if test then
       Printf.printf "%s passed\n" message 
     else
       Printf.printf "%s failed\n" message ;;
-
 
 let rec factor (n : int) : int =
     if n = 0 then 1
@@ -32,11 +31,29 @@ let rec length (list : int list) : int =
       | _h :: t -> 1 + length t;;
 
 let length_test () =
+    unit_test (length [] = 0) "list []" ;; 
+
+let length_test () =
+    unit_test (length [1; 2; 3] = 3) "length [1; 2; 3] = 3";;
+    unit_test (length [1; 2] = 2) "length [1; 2] = 2";;
     unit_test (length [1] = 1) "length [1]";;
     unit_test (length [] = 0) "length []";;
     
 
 length_test ();;
+
+
+let rec increment_all_in_list (list : int list) : int list = 
+    match list with
+        | [] -> []
+        | h :: t -> (1 + h) :: (increment_all_in_list t);;
+
+
+let increment_test_one () =
+    unit_test (increment_all_in_list [1;2;3] = [2;3;4]) "[1, 2, 3] => [2, 3, 4]";;
+    unit_test (increment_all_in_list [2;3;4] = [3;4;5]) "[2, 3, 4] => [3, 4, 5]";;
+
+increment_test_one ();;
 
 (*
 
@@ -61,8 +78,8 @@ let rec sqre_all (list : int list) : int list =
 
 (* Using some higher order functions *)
 
-let rec map (f : int -> int) (xs : int list) : int list =
-    match xs with
+let rec map (f : int -> int) (list : int list) : int list =
+    match list with
       | [] -> []
       | h :: t -> (f h) :: (map f t);;
 
@@ -71,8 +88,21 @@ let rec map (f : int -> int) (xs : int list) : int list =
 let inc_all (list : int list) : int list = 
     map (fun x -> x + 1) list;;
 
+let increment_test_two () =
+    unit_test (inc_all [1;2;3;] = [2;3;4]) "Second Increment function: [1, 2, 3] => [2, 3, 4]";;
+
+increment_test_two ();;
+
+
 let sqre_all (list : int list) : int list =
     map (fun x -> x * x) list;;
+
+
+let sqre_test () =
+    unit_test (sqre_all [1; 2; 3; 4] = [1; 4; 9; 16]) "Squaring list function: [1, 2, 3, 4] => [1, 4, 9, 16]";;
+
+sqre_test ();;
+
 
 
 
@@ -94,8 +124,8 @@ let rec product (list : int list) : int =
 
 
 
-let rec fold (f: int -> int -> int) (xs : int list) (acc: int) : int =
-    match xs with
+let rec fold (f: int -> int -> int) (list : int list) (acc: int) : int =
+    match list with
       | [] -> acc
       | h :: t -> f h (fold f t acc);;
 
@@ -136,6 +166,8 @@ let evens (list : int list) : int list =
 
 let positives (list : int list) : int list = 
     filter (fun x -> x > 0) list;;
+
+(* Above is essentially building the standard library for filter, map, and fold on a list *)
 
 
 (*
