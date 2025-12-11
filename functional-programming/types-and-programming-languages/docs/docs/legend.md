@@ -3,7 +3,7 @@ sidebar_position: 1
 ---
 
 
-import MainLegendCard from './components/main-legend-card.tsx'
+import MainLegendCard from './components/legend-card/main-legend-card.tsx'
 
 
 # Legend
@@ -12,7 +12,7 @@ import MainLegendCard from './components/main-legend-card.tsx'
 
 > This repository contains a collection of in-depth research on Compilers, Type Systems, and Programming Languages.
 
-<MainLegendCard>
+<MainLegendCard title="Legend">
 
 This is a test card
 

@@ -1,0 +1,9 @@
+.legend-card {
+  padding: 32px;
+  background-color: var(--legend-card-background);
+  border-radius: 16px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  border: 2px solid red;
+  border-color: var(--legend-card-border-color);
+  color: white;
+}

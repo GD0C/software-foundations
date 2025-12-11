@@ -1,1 +1,2 @@
-export * from './main-legend-card';
+export * from './legend-card';
+export * from './interfaces';
