@@ -100,6 +100,7 @@ let sqre_all (list : int list) : int list =
 
 let sqre_test () =
     unit_test (sqre_all [1; 2; 3; 4] = [1; 4; 9; 16]) "Squaring list function: [1, 2, 3, 4] => [1, 4, 9, 16]";;
+    unit_test (sqre_all [1; 2; 3; 4; 5; 6; 7; 8; 9] = [1; 4; 9; 16; 25; 36; 49; 64; 81]) "Squaring list function: [1, 2, 3, 4, 5, 6, 7, 8, 9] => [1, 4, 9, 16, 25, 36, 49, 64, 81]";;
 
 sqre_test ();;
 
@@ -134,11 +135,35 @@ let rec fold (f: int -> int -> int) (list : int list) (acc: int) : int =
 let sum (list : int list) : int =
     fold (+) list 0;;
 
+
+let sum_test () =
+    unit_test (sum [1; 2; 3; 4; 5; 6; 7; 8; 9] = 45) "sum [1, 2, 3, 4, 5, 6, 7, 8, 9] = 45";;
+    unit_test (sum [1; 2; 3; 4; 5; 6; 7; 8; 9; 10] = 450) "sum [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] = 450";;
+
+sum_test ();;
+
 let product (list : int list) : int =
     fold ( * ) list 1;;
 
+let product_test () =
+    unit_test (product [1; 2; 3; 4; 5; 6; 7; 8; 9] = 3628800) "product [1, 2, 3, 4, 5, 6, 7, 8, 9] = 3628800";;
+    unit_test (product [1; 2; 3; 4; 5; 6; 7; 8; 9; 10] = 36288000) "product [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] = 36288000";;
+
+product_test ();;
+
+Printf.printf "Product [1...10]: %d\n" (product [1; 2; 3; 4; 5; 6; 7; 8; 9; 10]);;
+Printf.printf "Product [1...9]: %d\n" (product [1; 2; 3; 4; 5; 6; 7; 8; 9]);;
+
+
 let rewrite_length (list : int list) : int =
     fold (fun _h acc -> 1 + acc) list 0;;
+
+let rewrite_length_test () =
+    unit_test (rewrite_length [1; 2; 3; 4; 5; 6; 7; 8; 9] = 9) "rewrite_length [1, 2, 3, 4, 5, 6, 7, 8, 9] = 9";;
+
+rewrite_length_test ();;
+
+
 
 (*
 
@@ -159,7 +184,8 @@ let rec positives (list : int list) : int list =
 let rec filter (test : int -> bool) (list : int list) : int list = 
     match list with
       | [] -> []
-      | h :: t -> if test h then h :: (filter test t) else filter (test t);;
+      | h :: t -> if test h then h :: (filter test t) else filter test t;;
+
 
 let evens (list : int list) : int list =
     filter (fun x -> x mod 2 = 0) list;;
@@ -175,14 +201,14 @@ let positives (list : int list) : int list =
 *)
 
 type person = {
-    lastname : string;
     firstname : string;
+    lastname : string;
     birthyear : int;
   }
 
 let me : person = {
-    lastname = "boss";
     firstname = "andrew";
+    lastname = "boss";
     birthyear = 1997
   }
 
@@ -211,7 +237,18 @@ let fullname_oops (p : person) : string =
     p.firstname ^ " " ^ p.lastname;;
 
 
-Printf.printf "%s \n" fullname (me);;
+
+let my_person : person = {firstname = "John"; lastname = "Doe"; birthyear = 1997}
+
+
+
+let {firstname; lastname;} = my_person;;
+
+
+
+Printf.printf "%s %s\n" firstname lastname;;
+
+
 Printf.printf "%s \n" fullname_two (me);;
 Printf.printf "%s \n" fullname_three (me);;
 Printf.printf "%s \n" fullname_oops (me);;
